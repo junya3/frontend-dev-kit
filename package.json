@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build --base=/myproject/",
+    "build": "gulp build --base=/junya03/sub/",
     "watch": "gulp watch"
   },
   "repository": {
