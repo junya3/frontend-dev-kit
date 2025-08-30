@@ -1,0 +1,22 @@
+{
+  "name": "glup-study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/junya3/gulp-study.git"
+  },
+  "author": "junya03",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/junya3/gulp-study/issues"
+  },
+  "homepage": "https://github.com/junya3/gulp-study#readme",
+  "devDependencies": {
+    "gulp": "^5.0.1"
+  }
+}
