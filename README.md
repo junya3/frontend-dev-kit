@@ -4,13 +4,28 @@
 
 ### npm
 
-`npm install --save-dev gulp gulp-pug gulp-plumber gulp-notify browser-sync`
+```
+npm install --save-dev gulp gulp-pug gulp-plumber gulp-notify browser-sync
+```
 
 - gulp : タスクランナー本体
 - gulp-pug : Pug を HTML に変換する
 - gulp-plumnber : エラーで処理が止まるのを防ぐ
 - gulp-notify : エラーや処理完了を通知で教えてくれる
 - browser-sync : ローカルサーバー＋自動リロードで快適開発
+
+### サブディレクトリの設定
+
+`package.json`の build コマンドを下記のように書き換えてください。
+設定することで build 時に`***`と設定した部分が変化します。
+
+```
+"build": "gulp build --base=/***/",
+// ***の位置にデプロイする際に適応させるパスを設定
+
+// 例）example.com/exam/index.html
+"build": "gulp build --base=/exam/",
+```
 
 ##　ディレクトリ構成
 
@@ -43,7 +58,4 @@ src/
 └─ assets/
     ├─ images/
     └─ fonts/
-
-
-
 ```
