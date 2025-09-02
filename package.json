@@ -4,8 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "gulp build --base=/example/",
-    "watch": "gulp preview"
+    "watch": "gulp preview",
+    "build": "gulp build --base=/gulp-study/"
   },
   "repository": {
     "type": "git",
