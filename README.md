@@ -78,6 +78,30 @@ link(rel="stylesheet", href=root + "assets/css/main.css")
 script(type="module", src=root + "assets/js/main.js")
 ```
 
+## 画像 (Images)
+
+プロジェクト内の画像は `src/assets/images` に配置します。
+
+### Preview
+
+`npm run watch` を実行すると、画像は `preview/assets/images` にコピーされます。
+Gulp5 の仕様で画像ファイルが破損しないように `{ encoding: false }` を指定しています。
+
+```js
+return src(paths.src, { encoding: false })
+  .pipe(image()) // gulp-image で軽量圧縮
+  .pipe(dest(paths.preview));
+```
+
+### Build
+
+`npm run build` 実行時は、`html/assets/images` にコピーされ、軽量圧縮されます。
+圧縮は `gulp-image` を使っているため、設定不要で JPEG / PNG / SVG のサイズを削減できます。
+
+```js
+return src(paths.src, { encoding: false }).pipe(image()).pipe(dest(paths.dist));
+```
+
 ## 注意ポイント
 
 - Sass, TypeScript, Pug は全て **root 変数** を使うことで build/preview 両方で同じコードを利用可能
