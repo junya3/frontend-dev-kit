@@ -5,15 +5,11 @@
 このリポジトリは **Gulp で Pug と Sass をコンパイルする開発環境** です。
 preview 用サーバーでの自動リロードと、build 用の圧縮・出力に対応しています。
 
----
-
 ## インストール
 
 ```bash
 npm install
 ```
-
----
 
 ## 開発サーバー（watch + preview）
 
@@ -24,8 +20,6 @@ npm run watch
 - `preview` フォルダをルートとしてローカルサーバー起動
 - Pug/Sass 変更時に自動でブラウザをリロード
 - CSS/JS/画像の変更も反映されます
-
----
 
 ## ビルド（本番用）
 
@@ -43,8 +37,6 @@ gulp build --base=/exam/
 ```
 
 - Pug 内で使用する `root` に適用されます
-
----
 
 ## 使用パッケージ
 
@@ -72,8 +64,6 @@ gulp build --base=/exam/
 | sass           | Sass コンパイラ本体（Dart Sass）        |
 | gulp-clean-css | CSS を minify（圧縮）                   |
 
----
-
 ## Pug での CSS/リンク指定
 
 - preview/build 両対応には `root` 変数を利用すると便利です。
@@ -86,8 +76,6 @@ a(href=root + "about")
 
 - preview タスクでは `root = '/'`
 - build タスクでは `root = '/exam/'`（デプロイ先に応じて変更）
-
----
 
 ## ディレクトリ構成
 
@@ -119,8 +107,6 @@ src/
     ├─ images/
     └─ fonts/
 ```
-
----
 
 💡 **ポイント**
 
