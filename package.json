@@ -20,6 +20,7 @@
   "homepage": "https://github.com/junya3/gulp-study#readme",
   "devDependencies": {
     "@prettier/plugin-pug": "^3.4.2",
+    "autoprefixer": "^10.4.21",
     "browser-sync": "^3.0.4",
     "del": "^8.0.0",
     "gulp": "^5.0.1",
@@ -28,6 +29,7 @@
     "gulp-image": "^6.3.1",
     "gulp-notify": "^5.0.0",
     "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^10.0.0",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^6.0.1",
     "gulp-sourcemaps": "^3.0.0",

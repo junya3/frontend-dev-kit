@@ -2,8 +2,10 @@ import { src, dest, watch } from 'gulp';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 import gulpSass from 'gulp-sass';
-import * as dartSass from 'sass'; // ← 修正ポイント
+import * as dartSass from 'sass';
 import cleanCSS from 'gulp-clean-css';
+import postcss from 'gulp-postcss';
+import autoprefixer from 'autoprefixer';
 import yargs from 'yargs';
 
 const sass = gulpSass(dartSass);
@@ -16,7 +18,7 @@ const paths = {
 };
 
 // ----------------------------
-// build　圧縮あり
+// build　圧縮あり + autoprefixer
 // ----------------------------
 export function compileSassDist() {
   console.log('[SASS:build] compiling...');
@@ -24,15 +26,16 @@ export function compileSassDist() {
     .pipe(
       plumber({
         errorHandler: notify.onError('Sass Error: <%= error.message %>'),
-      })
+      }),
     )
     .pipe(sass())
+    .pipe(postcss([autoprefixer()]))
     .pipe(cleanCSS())
     .pipe(dest(paths.dist));
 }
 
 // ----------------------------
-// preview
+// preview + autoprefixer
 // ----------------------------
 export function compileSassPreview() {
   console.log('[SASS:preview] compiling...');
@@ -40,9 +43,10 @@ export function compileSassPreview() {
     .pipe(
       plumber({
         errorHandler: notify.onError('Sass Error: <%= error.message %>'),
-      })
+      }),
     )
     .pipe(sass())
+    .pipe(postcss([autoprefixer()]))
     .pipe(dest(paths.preview, { sourcemaps: '.' }));
 }
 
