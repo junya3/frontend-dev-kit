@@ -1,0 +1,23 @@
+# Node modules
+node_modules/
+
+# ビルド出力（自動生成されるHTMLやCSS、JS）
+preview/
+
+# OS 系
+.DS_Store
+Thumbs.db
+
+# ログやキャッシュ
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# エディタ設定
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# 一時ファイル
+*.tmp
+*.swp
