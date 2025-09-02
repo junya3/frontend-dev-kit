@@ -5,6 +5,7 @@ import { compilePugDist, compilePugPreview } from './gulp/pug.js';
 import { compileSassDist, compileSassPreview } from './gulp/sass.js';
 import { compileTsDist, compileTsPreview } from './gulp/ts.js';
 import { imagesPreview, imagesDist } from './gulp/images.js';
+import { fontsPreview, fontsDist } from './gulp/fonts.js';
 import { cleanDist, cleanPreview } from './gulp/clean.js';
 
 const paths = {
@@ -13,6 +14,7 @@ const paths = {
   scss: 'src/scss/**/*.scss',
   ts: 'src/ts/**/*.ts',
   images: 'src/assets/images/**/*',
+  fonts: 'src/assets/fonts/**/*',
 };
 
 function serve() {
@@ -40,12 +42,25 @@ function serve() {
       done();
     })
   );
+  watch(
+    paths.fonts,
+    series(fontsPreview, (done) => {
+      browserSync.reload();
+      done();
+    })
+  );
 }
 
 // ESM の named export に変更
 export const build = series(
   cleanDist,
-  parallel(compilePugDist, compileSassDist, compileTsDist, imagesDist)
+  parallel(
+    compilePugDist,
+    compileSassDist,
+    compileTsDist,
+    imagesDist,
+    fontsDist
+  )
 );
 export const preview = series(
   cleanPreview,
@@ -53,7 +68,8 @@ export const preview = series(
     compilePugPreview,
     compileSassPreview,
     compileTsPreview,
-    imagesPreview
+    imagesPreview,
+    fontsPreview
   ),
   serve
 );
