@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "watch": "gulp preview",
-    "build": "gulp build --base=/gulp-study/"
+    "build": "gulp build --base=/gulp-study/html/"
   },
   "repository": {
     "type": "git",
