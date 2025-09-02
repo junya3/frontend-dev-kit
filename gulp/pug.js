@@ -1,11 +1,10 @@
-// gulp/pug.js
-const { src, dest } = require('gulp');
-const pug = require('gulp-pug');
-const plumber = require('gulp-plumber');
-const notify = require('gulp-notify');
-const yargs = require('yargs');
-const argv = yargs.argv;
+import { src, dest } from 'gulp';
+import pug from 'gulp-pug';
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
+import yargs from 'yargs';
 
+const argv = yargs(process.argv.slice(2)).argv; // ← ESM 対応
 const paths = {
   src: ['src/pug/**/*.pug', '!src/pug/**/_*.pug'],
   dist: 'html',
@@ -15,11 +14,11 @@ const paths = {
 // build 用: --base=/junya03/sub/ などで切替
 const basePathForDist = argv.base || '/';
 
-// preview 用: つねにルートで固定
+// preview 用: 常にルートで固定
 const basePathForPreview = '/';
 
 // build（html 出力）
-function compilePugDist() {
+export function compilePugDist() {
   console.log('[PUG:build] basePath =', basePathForDist);
   return src(paths.src)
     .pipe(
@@ -31,8 +30,8 @@ function compilePugDist() {
     .pipe(dest(paths.dist));
 }
 
-// watch（preview 出力）
-function compilePugPreview() {
+// preview（watch 用）
+export function compilePugPreview() {
   console.log('[PUG:preview] root =', basePathForPreview);
   return src(paths.src)
     .pipe(
@@ -43,5 +42,3 @@ function compilePugPreview() {
     .pipe(pug({ pretty: true, locals: { root: basePathForPreview } }))
     .pipe(dest(paths.preview));
 }
-
-module.exports = { compilePugDist, compilePugPreview };

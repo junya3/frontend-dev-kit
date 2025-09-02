@@ -1,35 +1,59 @@
-const { series, parallel, watch } = require('gulp');
-const browserSync = require('browser-sync').create();
+import { series, parallel, watch } from 'gulp';
+import browserSync from 'browser-sync';
 
-// gulp フォルダからタスクを読み込む
-const { compilePugDist, compilePugPreview } = require('./gulp/pug');
-const { compileSassDist, compileSassPreview } = require('./gulp/sass');
-const { compileTsDist, compileTsPreview } = require('./gulp/ts');
+import { compilePugDist, compilePugPreview } from './gulp/pug.js';
+import { compileSassDist, compileSassPreview } from './gulp/sass.js';
+import { compileTsDist, compileTsPreview } from './gulp/ts.js';
+import { imagesPreview, imagesDist } from './gulp/images.js';
+import { cleanDist, cleanPreview } from './gulp/clean.js';
 
-// preview ディレクトリを変数で定義
 const paths = {
   preview: 'preview',
   pug: 'src/pug/**/*.pug',
   scss: 'src/scss/**/*.scss',
-  ts: 'src/scss/**/*.ts',
+  ts: 'src/ts/**/*.ts',
+  images: 'src/assets/images/**/*',
 };
 
-// watch + browserSync
 function serve() {
-  browserSync.init({
-    server: { baseDir: paths.preview }, // ← ここを変数に変更
-  });
+  browserSync.init({ server: { baseDir: paths.preview } });
 
   watch(paths.pug, compilePugPreview).on('change', browserSync.reload);
-  watch(paths.scss, series(compileSassPreview, browserSync.reload));
-  watch('src/ts/**/*.ts', compileTsPreview).on('change', browserSync.reload);
+  watch(
+    paths.scss,
+    series(compileSassPreview, (done) => {
+      browserSync.reload();
+      done();
+    })
+  );
+  watch(
+    paths.ts,
+    series(compileTsPreview, (done) => {
+      browserSync.reload();
+      done();
+    })
+  );
+  watch(
+    paths.images,
+    series(imagesPreview, (done) => {
+      browserSync.reload();
+      done();
+    })
+  );
 }
 
-// exports でタスク公開
-exports.build = parallel(compilePugDist, compileSassDist, compileTsDist);
-exports.preview = series(
-  parallel(compilePugPreview, compileSassPreview, compileTsPreview),
+// ESM の named export に変更
+export const build = series(
+  cleanDist,
+  parallel(compilePugDist, compileSassDist, compileTsDist, imagesDist)
+);
+export const preview = series(
+  cleanPreview,
+  parallel(
+    compilePugPreview,
+    compileSassPreview,
+    compileTsPreview,
+    imagesPreview
+  ),
   serve
 );
-
-exports.watch = exports.preview;
