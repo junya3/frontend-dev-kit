@@ -4,12 +4,14 @@ const browserSync = require('browser-sync').create();
 // gulp フォルダからタスクを読み込む
 const { compilePugDist, compilePugPreview } = require('./gulp/pug');
 const { compileSassDist, compileSassPreview } = require('./gulp/sass');
+const { compileTsDist, compileTsPreview } = require('./gulp/ts');
 
 // preview ディレクトリを変数で定義
 const paths = {
   preview: 'preview',
   pug: 'src/pug/**/*.pug',
   scss: 'src/scss/**/*.scss',
+  ts: 'src/scss/**/*.ts',
 };
 
 // watch + browserSync
@@ -20,12 +22,13 @@ function serve() {
 
   watch(paths.pug, compilePugPreview).on('change', browserSync.reload);
   watch(paths.scss, series(compileSassPreview, browserSync.reload));
+  watch('src/ts/**/*.ts', compileTsPreview).on('change', browserSync.reload);
 }
 
 // exports でタスク公開
-exports.build = parallel(compilePugDist, compileSassDist);
+exports.build = parallel(compilePugDist, compileSassDist, compileTsDist);
 exports.preview = series(
-  parallel(compilePugPreview, compileSassPreview),
+  parallel(compilePugPreview, compileSassPreview, compileTsPreview),
   serve
 );
 

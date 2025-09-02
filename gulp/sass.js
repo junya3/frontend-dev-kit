@@ -1,12 +1,12 @@
 const { build } = require('../gulpfile');
 
-const { src, dest } = require('gulp'),
-  plumber = require('gulp-plumber'),
-  notify = require('gulp-notify'),
-  sass = require('gulp-sass')(require('sass')),
-  cleanCSS = require('gulp-clean-css'),
-  yargs = require('yargs'),
-  argv = yargs.argv;
+const { src, dest } = require('gulp');
+const plumber = require('gulp-plumber');
+const notify = require('gulp-notify');
+const sass = require('gulp-sass')(require('sass'));
+const cleanCSS = require('gulp-clean-css');
+const yargs = require('yargs');
+const argv = yargs.argv;
 
 const paths = {
   src: 'src/scss/**/*.scss',
