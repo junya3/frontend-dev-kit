@@ -2,10 +2,10 @@
   "name": "glup-study",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "gulp build --base=/example/",
-    "watch": "gulp watch"
+    "watch": "gulp preview"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,10 @@
   "homepage": "https://github.com/junya3/gulp-study#readme",
   "devDependencies": {
     "browser-sync": "^3.0.4",
+    "del": "^8.0.0",
     "gulp": "^5.0.1",
     "gulp-clean-css": "^4.3.0",
+    "gulp-image": "^6.3.1",
     "gulp-notify": "^5.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-pug": "^5.0.0",
@@ -30,5 +32,24 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "sass": "^1.91.0",
     "typescript": "^5.9.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%",
+    "not dead"
+  ],
+  "imageTasks": {
+    "pngquant": true,
+    "optipng": false,
+    "zopflipng": true,
+    "jpegRecompress": false,
+    "mozjpeg": true,
+    "gifsicle": true,
+    "svgo": true,
+    "concurrent": 10,
+    "quiet": true
   }
 }

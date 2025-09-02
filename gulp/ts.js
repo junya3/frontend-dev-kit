@@ -1,12 +1,11 @@
-// gulp/ts.js
-const { src, dest } = require('gulp');
-const plumber = require('gulp-plumber');
-const notify = require('gulp-notify');
-const ts = require('gulp-typescript');
-const sourcemaps = require('gulp-sourcemaps');
-const yargs = require('yargs');
+import { src, dest } from 'gulp';
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
+import ts from 'gulp-typescript';
+import yargs from 'yargs';
+import terser from 'gulp-terser';
+
 const argv = yargs.argv;
-const terser = require('gulp-terser'); // build 用に圧縮
 
 const paths = {
   src: 'src/ts/**/*.ts',
@@ -16,8 +15,10 @@ const paths = {
 
 const tsProject = ts.createProject('tsconfig.json');
 
+// ----------------------------
 // preview
-function compileTsPreview() {
+// ----------------------------
+export function compileTsPreview() {
   console.log('[TS:preview] compiling...');
   return src(paths.src, { sourcemaps: true })
     .pipe(
@@ -29,8 +30,10 @@ function compileTsPreview() {
     .js.pipe(dest(paths.preview, { sourcemaps: '.' }));
 }
 
+// ----------------------------
 // build
-function compileTsDist() {
+// ----------------------------
+export function compileTsDist() {
   console.log('[TS:build] compiling...');
   return src(paths.src)
     .pipe(
@@ -42,5 +45,3 @@ function compileTsDist() {
     .js.pipe(terser()) // minify
     .pipe(dest(paths.dist));
 }
-
-module.exports = { compileTsPreview, compileTsDist };

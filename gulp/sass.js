@@ -1,11 +1,12 @@
-const { build } = require('../gulpfile');
+import { src, dest, watch } from 'gulp';
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
+import gulpSass from 'gulp-sass';
+import * as dartSass from 'sass'; // ← 修正ポイント
+import cleanCSS from 'gulp-clean-css';
+import yargs from 'yargs';
 
-const { src, dest } = require('gulp');
-const plumber = require('gulp-plumber');
-const notify = require('gulp-notify');
-const sass = require('gulp-sass')(require('sass'));
-const cleanCSS = require('gulp-clean-css');
-const yargs = require('yargs');
+const sass = gulpSass(dartSass);
 const argv = yargs.argv;
 
 const paths = {
@@ -17,13 +18,13 @@ const paths = {
 // ----------------------------
 // build　圧縮あり
 // ----------------------------
-function compileSassDist() {
+export function compileSassDist() {
   console.log('[SASS:build] compiling...');
   return src(paths.src, { sourcemaps: false })
     .pipe(
       plumber({
         errorHandler: notify.onError('Sass Error: <%= error.message %>'),
-      }) // error 出力
+      })
     )
     .pipe(sass())
     .pipe(cleanCSS())
@@ -33,7 +34,7 @@ function compileSassDist() {
 // ----------------------------
 // preview
 // ----------------------------
-function compileSassPreview() {
+export function compileSassPreview() {
   console.log('[SASS:preview] compiling...');
   return src(paths.src, { sourcemaps: true })
     .pipe(
@@ -47,10 +48,8 @@ function compileSassPreview() {
 
 // =========================
 // watch
-// =========================
-function watchSassPreview() {
+// =============================
+export function watchSassPreview() {
   console.log('[SASS:watch:preview] watching...');
   watch(paths.src, compileSassPreview);
 }
-
-module.exports = { compileSassDist, compileSassPreview };
