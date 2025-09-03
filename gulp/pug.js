@@ -6,7 +6,7 @@ import yargs from 'yargs';
 
 const argv = yargs(process.argv.slice(2)).argv; // ← ESM 対応
 const paths = {
-  src: ['src/pug/**/*.pug', '!src/pug/**/_*.pug'],
+  src: ['src/pug/pages/**/*.pug', '!src/pug/pages/**/_*.pug'],
   dist: 'html',
   preview: 'preview',
 };
@@ -24,7 +24,7 @@ export function compilePugDist() {
     .pipe(
       plumber({
         errorHandler: notify.onError('Pug Error: <%= error.message %>'),
-      })
+      }),
     )
     .pipe(pug({ pretty: true, locals: { root: basePathForDist } }))
     .pipe(dest(paths.dist));
@@ -37,7 +37,7 @@ export function compilePugPreview() {
     .pipe(
       plumber({
         errorHandler: notify.onError('Pug Error: <%= error.message %>'),
-      })
+      }),
     )
     .pipe(pug({ pretty: true, locals: { root: basePathForPreview } }))
     .pipe(dest(paths.preview));
