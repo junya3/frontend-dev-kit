@@ -1,20 +1,7 @@
--
-  const imgPath = root + 'assets/images/';
-  const cssPath = root + 'assets/css/';
-  const jsPath = root + 'assets/js/';
+extends /layouts/layout
 
-doctype html
-html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
-    link(rel="stylesheet", href=root + "assets/css/styles.css")
-  body
-    p こんにちは
+block content
+  a(href=root + "about") Aboutページへ
 
-    img(src=imgPath + "sample.jpg", alt="")
-
-    a(href=root + "about") Aboutページへ
-
-  script(type="module", src=jsPath + "main.js")
+block foot_js
+  script(type="module", src=root + "assets/js/main.js")
