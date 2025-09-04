@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "watch": "gulp preview",
-    "build": "gulp build --base=/gulp-study/html/",
+    "build": "gulp build --base=/frontend-dev-kit/html/",
     "prepare": "husky install"
   },
   "repository": {
