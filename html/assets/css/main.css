@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: 'Noto Sans JP';
   src: url(/assets/fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
@@ -5,10 +6,95 @@
   font-style: normal;
   font-display: swap;
 }
+:root {
+  --font: 'Noto Sans JP', sans-serif;
+  --base-font-size: 16px;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --transition: 0.5s;
+}
+body.is-resizing * {
+  transition: none !important;
+}
+.wrapper {
+  width: min(100%, var(--inner-width));
+  padding-inline: var(--inner-padding);
+  margin-inline: auto;
+}
+:where(*, ::before, ::after) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  list-style: none;
+  quotes: none;
+  box-sizing: border-box;
+}
+:where(html, body) {
+  height: 100%;
+  line-height: 1.5;
+}
+:where(img, picture, video, canvas, svg) {
+  display: block;
+  max-width: 100%;
+}
+.col {
+  --col-inner-width: 1000px;
+  --col-num: 1;
+  --col-padding: 0px;
+  --col-padding-inline-total: calc(var(--col-padding) * 2);
+  --col-gap: 16px;
+  --col-gap-total: calc(var(--col-gap) * (var(--col-num) - 1));
+  --col-min-width: calc(
+    (var(--col-inner-width) - var(--col-gap-total) - var(--col-padding-inline-total)) /
+      var(--col-num)
+  );
+  width: min(100%, var(--col-inner-width));
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
+  gap: var(--col-gap);
+  padding-inline: var(--col-padding);
+}
+.col.col-2 {
+  --col-num: 2;
+}
+.col.col-3 {
+  --col-num: 3;
+}
+.col.col-4 {
+  --col-num: 4;
+}
+.col.col-5 {
+  --col-num: 5;
+}
+.col.col-6 {
+  --col-num: 6;
+}
+.col.col-7 {
+  --col-num: 7;
+}
+.col.col-8 {
+  --col-num: 8;
+}
+.col.col-9 {
+  --col-num: 9;
+}
+.col.col-10 {
+  --col-num: 10;
+}
+.col.col-11 {
+  --col-num: 11;
+}
+.col.col-12 {
+  --col-num: 12;
+}
+html {
+  background: color-mix(in srgb, #00f 20%, rgba(0, 0, 0, 0));
+}
 body {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: 900;
-}
-html {
-  background: color-mix(in srgb, #ff0 50%, rgba(0, 0, 0, 0));
 }
