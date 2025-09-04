@@ -1,0 +1,14 @@
+/* リサイズ中はtransitionを無効化 */
+body.is-resizing * {
+  transition: none !important;
+}
+
+// ----------------------------
+// layout
+// ----------------------------
+
+.wrapper {
+  width: min(100%, var(--inner-width));
+  padding-inline: var(--inner-padding);
+  margin-inline: auto;
+}

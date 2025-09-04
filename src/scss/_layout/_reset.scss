@@ -1,0 +1,21 @@
+:where(*, *::before, *::after) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  list-style: none;
+  quotes: none;
+  box-sizing: border-box;
+}
+
+:where(html, body) {
+  height: 100%;
+  line-height: 1.5;
+}
+
+:where(img, picture, video, canvas, svg) {
+  display: block;
+  max-width: 100%;
+}

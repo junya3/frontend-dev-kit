@@ -1,0 +1,37 @@
+@use '../../_global/' as *;
+
+// ----------------------------
+// 使い方
+// ----------------------------
+// pugファイルでul.col.col-3とすると--col-inner-widthで
+// 指定した幅の中で縦3つのグリッドになります。画面幅が小さくなると自動で変化します。
+
+.col {
+  // gridコンテンツの幅
+  // この値を起点に動作します。必ずpxで指定してください。
+  // 別クラスで各変数を更新しても大丈夫です。
+  --col-inner-width: 1000px;
+
+  --col-num: 1;
+  --col-padding: 0px;
+  --col-padding-inline-total: calc(var(--col-padding) * 2);
+  --col-gap: 16px;
+  --col-gap-total: calc(var(--col-gap) * (var(--col-num) - 1));
+  --col-min-width: calc(
+    (var(--col-inner-width) - var(--col-gap-total) - var(--col-padding-inline-total)) /
+      var(--col-num)
+  );
+
+  width: min(100%, var(--col-inner-width));
+  margin-bottom: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
+  gap: var(--col-gap);
+  padding-inline: var(--col-padding);
+
+  @for $i from 2 through 12 {
+    &.col-#{$i} {
+      --col-num: #{$i};
+    }
+  }
+}

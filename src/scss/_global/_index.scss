@@ -1,5 +1,4 @@
 @forward 'g-fonts';
-
-html {
-  background: color-mix(in srgb, #ff0 50%, #0000);
-}
+@forward 'g-function';
+@forward 'g-mixin';
+@forward 'g-variable';
