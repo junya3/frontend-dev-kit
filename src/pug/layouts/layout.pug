@@ -1,0 +1,86 @@
+//- ----------------------------
+//- default global variable 
+//- ----------------------------
+-
+  let title = "Frontend-kit"
+  const description = 'Pug, SCSS, TypeScriptを使って開発ができるフロントエンドキットです。'
+  const keywords = 'pug, scss, ts, TypeScript, jade, sass, frontend, markup, kit, develop'
+  const lang = 'ja'
+
+  const og_url = ''
+  const og_title = title 
+  const og_image = ''
+  const og_description = description
+  const og_sitename = title 
+
+  //- let root = '/' //- このプロジェクトでは基本的に不要です。readmeをご参照ください。
+
+  let bodyClass = ''
+
+//- ----------------------------
+//- override variable 
+//- ----------------------------
+block var_block
+
+doctype html
+html(lang=lang)
+  head
+    //- ----------------------------
+    //- meta
+    //- ----------------------------
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(name="description", content=description)
+    meta(name="keywords", content=keywords)
+
+    //- ----------------------------
+    //- OGP　SNSシェア用
+    //- ----------------------------
+    meta(property="og:title", content=og_title)
+    meta(property="og:description", content=og_description)
+    meta(property="og:image", content=og_image)
+    meta(property="og:url", content=og_url)
+    meta(property="og:type", content="website")
+    meta(property="og:site_name", content=og_sitename)
+
+    //- ----------------------------
+    //- title
+    //- ----------------------------
+    title= title
+
+    //- ----------------------------
+    //- css common
+    //- ----------------------------
+    link(rel="stylesheet", href=root + "assets/css/main.css")
+
+    //- ----------------------------
+    //- css block
+    //- ----------------------------
+    block styles
+
+    //- ----------------------------
+    //- head JS block
+    //- ----------------------------
+    block head_js
+
+  body(class=bodyClass)
+    //- ----------------------------
+    //- header
+    //- ----------------------------
+    if page !== "maintenance"
+      include _header
+
+    //- ----------------------------
+    //- content
+    //- ----------------------------
+    main
+      .wrapper
+        block content
+
+    //- ----------------------------
+    //- footer
+    //- ----------------------------
+    if page !== "maintenance"
+      include _footer
+
+  block foot_js

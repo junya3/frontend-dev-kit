@@ -26,7 +26,7 @@ export function compilePugDist() {
         errorHandler: notify.onError('Pug Error: <%= error.message %>'),
       }),
     )
-    .pipe(pug({ pretty: true, locals: { root: basePathForDist } }))
+    .pipe(pug({ pretty: true, basedir: 'src/pug', locals: { root: basePathForDist } }))
     .pipe(dest(paths.dist));
 }
 
@@ -39,6 +39,6 @@ export function compilePugPreview() {
         errorHandler: notify.onError('Pug Error: <%= error.message %>'),
       }),
     )
-    .pipe(pug({ pretty: true, locals: { root: basePathForPreview } }))
+    .pipe(pug({ pretty: true, basedir: 'src/pug', locals: { root: basePathForPreview } }))
     .pipe(dest(paths.preview));
 }
