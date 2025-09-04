@@ -1,9 +1,11 @@
+// ----------------------------
 // fontの設定のみ相対パスで指定してください。
 // '/assets/fonts/***/'
+// ----------------------------
 
 @font-face {
   font-family: 'Noto Sans JP';
-  src: url('/assets/fonts/NotoSansJP-VariableFont_wght.ttf') format('truetype');
+  src: url('../fonts/NotoSansJP-VariableFont_wght.ttf') format('truetype');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
