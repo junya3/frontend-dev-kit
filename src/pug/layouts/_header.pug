@@ -1,2 +1,14 @@
-header
-  h1 ヘッダー
+include /components/common/_icon
+
+header.header
+  .header_inner
+    h1.header_logo
+      +icon("code")
+      span.header_logo-text
+        span.logo-title
+          | Frontend dev kit
+        span
+          | pug + scss + ts
+
+    button.theme(type="button")
+      +icon("moon", "regular").theme_icon

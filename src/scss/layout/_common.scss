@@ -1,0 +1,14 @@
+@use '../foundation/' as *;
+
+.icon {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 8px;
+  text-align: center;
+  align-content: center;
+  background: linear-gradient(90deg, color-hsl('black', 80), color-hsl('black', 50));
+  color: mix('var(--color-white)', 90);
+  font-size: 1rem;
+  line-height: 1;
+}

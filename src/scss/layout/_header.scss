@@ -1,0 +1,29 @@
+@use '../foundation/' as *;
+
+.header {
+  border-bottom: 1px solid mix('black', 15);
+
+  &_inner {
+    @extend %wrapper;
+    display: flex;
+    padding-block: 16px;
+
+    .header_logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 600;
+
+      &-text {
+        .logo-title {
+          font-size: rem(16);
+        }
+      }
+    }
+
+    .theme {
+      margin-left: auto;
+      background: #0000;
+    }
+  }
+}

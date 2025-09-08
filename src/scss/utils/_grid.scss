@@ -1,4 +1,4 @@
-@use '../../_global/' as *;
+@use '../foundation/' as *;
 
 // ----------------------------
 // 使い方
@@ -25,7 +25,7 @@
   width: min(100%, var(--col-inner-width));
   margin-bottom: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--col-min-width), 100%), 1fr));
   gap: var(--col-gap);
   padding-inline: var(--col-padding);
 
