@@ -1,3 +1,22 @@
+:where(*, ::before, ::after) {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  list-style: none;
+  quotes: none;
+  box-sizing: border-box;
+}
+:where(html, body) {
+  height: 100%;
+  line-height: 1.5;
+}
+:where(img, picture, video, canvas, svg) {
+  display: block;
+  max-width: 100%;
+}
 @font-face {
   font-family: 'Noto Sans JP';
   src: url(../fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
@@ -7,7 +26,7 @@
 }
 :root {
   --font: 'Noto Sans JP', sans-serif;
-  --base-font-size: 16px;
+  --font-rem: 16;
   --color-black: #000000;
   --color-white: #ffffff;
   --transition: 0.5s;

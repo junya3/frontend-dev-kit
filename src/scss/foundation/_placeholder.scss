@@ -1,0 +1,15 @@
+@use 'variable' as *;
+@use 'mixin' as *;
+
+%wrapper {
+  --content-width: 1440;
+  --inline-padding: 16;
+  --total: calc(var(--content-width) + calc(var(--inline-padding) * 2));
+  width: min(100%, calc(var(--total) * 1px));
+  padding-inline: calc(var(--inline-padding) * 1px);
+  margin-inline: auto;
+
+  @include md() {
+    --inline-padding: 24;
+  }
+}

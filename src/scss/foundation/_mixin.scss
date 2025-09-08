@@ -1,0 +1,24 @@
+@use 'function' as *;
+
+// ----------------------------
+// media
+// ----------------------------
+
+@mixin hover() {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin md() {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+@mixin lg() {
+  @media screen and (min-width: 960px) {
+    @content;
+  }
+}

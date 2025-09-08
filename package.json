@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "watch": "gulp preview",
-    "build": "gulp build --base=/frontend-dev-kit/html/",
+    "deploy": "gulp build --base=/frontend-dev-kit/html/",
     "prepare": "husky install"
   },
   "repository": {
@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/junya3/gulp-study#readme",
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.0.1",
     "@prettier/plugin-pug": "^3.4.2",
     "autoprefixer": "^10.4.21",
     "browser-sync": "^3.0.4",

@@ -13,17 +13,27 @@
     <meta property="og:site_name" content="Frontend-kit">
     <title>Frontend-kit</title>
     <link rel="stylesheet" href="/frontend-dev-kit/html/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/vendor/fontawesome/css/all.min.css">
   </head>
   <body>
-    <header>
-      <h1>ヘッダー</h1>
+    <header class="header">
+      <div class="header_inner">
+        <h1 class="header_logo">
+              <div class="icon"><i class="fa-solid fa-code"></i></div><span class="header_logo-text"><span class="logo-title">Frontend dev kit</span><span>pug + scss + ts</span></span>
+        </h1>
+        <button class="theme" type="button">
+              <div class="icon theme_icon"><i class="fa-regular fa-moon"></i></div>
+        </button>
+      </div>
     </header>
     <main>
       <div class="wrapper"><a href="/frontend-dev-kit/html/about">Aboutページへ</a>
       </div>
     </main>
-    <footer>
-      <p>フッター</p>
+    <footer class="footer">
+      <div class="footer_inner">
+        <p class="footer-copy"><small>&copy; junya03.com</small></p>
+      </div>
     </footer>
   </body>
   <script type="module" src="/frontend-dev-kit/html/assets/js/main.js"></script>

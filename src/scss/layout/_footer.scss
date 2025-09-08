@@ -1,0 +1,15 @@
+@use '../foundation/' as *;
+
+.footer {
+  margin-top: auto;
+  border-top: 1px solid mix('black', 15);
+
+  &_inner {
+    @extend %wrapper;
+    display: flex;
+    padding-block: 16px;
+  }
+  .footer-copy {
+    font-size: rem(14);
+  }
+}

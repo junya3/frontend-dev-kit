@@ -1,26 +1,4 @@
 @charset "UTF-8";
-@font-face {
-  font-family: 'Noto Sans JP';
-  src: url(../fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-:root {
-  --font: 'Noto Sans JP', sans-serif;
-  --base-font-size: 16px;
-  --color-black: #000000;
-  --color-white: #ffffff;
-  --transition: 0.5s;
-}
-body.is-resizing * {
-  transition: none !important;
-}
-.wrapper {
-  width: min(100%, var(--inner-width));
-  padding-inline: var(--inner-padding);
-  margin-inline: auto;
-}
 :where(*, ::before, ::after) {
   margin: 0;
   padding: 0;
@@ -40,6 +18,99 @@ body.is-resizing * {
   display: block;
   max-width: 100%;
 }
+@font-face {
+  font-family: 'Noto Sans JP';
+  src: url(../fonts/NotoSansJP-VariableFont_wght.ttf) format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --font: 'Noto Sans JP', sans-serif;
+  --font-rem: 16;
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --transition: 0.5s;
+}
+.footer_inner,
+.header_inner,
+.wrapper {
+  --content-width: 1440;
+  --inline-padding: 16;
+  --total: calc(var(--content-width) + calc(var(--inline-padding) * 2));
+  width: min(100%, var(--total) * 1px);
+  padding-inline: calc(var(--inline-padding) * 1px);
+  margin-inline: auto;
+}
+@media screen and (min-width: 768px) {
+  .footer_inner,
+  .header_inner,
+  .wrapper {
+    --inline-padding: 24;
+  }
+}
+body.is-resizing * {
+  transition: none !important;
+}
+html {
+  background: color-mix(in srgb, #00f 5%, rgba(0, 0, 0, 0));
+  box-sizing: border-box;
+  font-size: var(--font-rem);
+}
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 400;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.icon {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 8px;
+  text-align: center;
+  align-content: center;
+  background: linear-gradient(
+    90deg,
+    hsl(from var(--color-black) h s calc(l + 80)),
+    hsl(from var(--color-black) h s calc(l + 50))
+  );
+  color: color-mix(in srgb, var(--color-white) 90%, transparent);
+  font-size: 1rem;
+  line-height: 1;
+}
+.header {
+  border-bottom: 1px solid color-mix(in srgb, #000 15%, transparent);
+}
+.header_inner {
+  display: flex;
+  padding-block: 16px;
+}
+.header_inner .header_logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: 600;
+}
+.header_inner .header_logo-text .logo-title {
+  font-size: calc(16 / var(--font-rem) * 1rem);
+}
+.header_inner .theme {
+  margin-left: auto;
+  background: rgba(0, 0, 0, 0);
+}
+.footer {
+  margin-top: auto;
+  border-top: 1px solid color-mix(in srgb, #000 15%, transparent);
+}
+.footer_inner {
+  display: flex;
+  padding-block: 16px;
+}
+.footer .footer-copy {
+  font-size: calc(14 / var(--font-rem) * 1rem);
+}
 .col {
   --col-inner-width: 1000px;
   --col-num: 1;
@@ -54,7 +125,7 @@ body.is-resizing * {
   width: min(100%, var(--col-inner-width));
   margin-bottom: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(var(--col-min-width), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--col-min-width), 100%), 1fr));
   gap: var(--col-gap);
   padding-inline: var(--col-padding);
 }
@@ -90,11 +161,4 @@ body.is-resizing * {
 }
 .col.col-12 {
   --col-num: 12;
-}
-html {
-  background: color-mix(in srgb, #00f 20%, rgba(0, 0, 0, 0));
-}
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-weight: 900;
 }
