@@ -7,6 +7,12 @@ import { compileTsDist, compileTsPreview } from './gulp/ts.js';
 import { imagesPreview, imagesDist } from './gulp/images.js';
 import { fontsPreview, fontsDist } from './gulp/fonts.js';
 import { cleanDist, cleanPreview } from './gulp/clean.js';
+import {
+  copyFontAwesomeWebfontsDist,
+  copyFontAwesomeWebfontsPreview,
+  copyFontAwesomeCssDist,
+  copyFontAwesomeCssPreview,
+} from './gulp/fontawesome.js';
 
 const paths = {
   preview: 'preview',
@@ -26,28 +32,28 @@ function serve() {
     series(compileSassPreview, (done) => {
       browserSync.reload();
       done();
-    })
+    }),
   );
   watch(
     paths.ts,
     series(compileTsPreview, (done) => {
       browserSync.reload();
       done();
-    })
+    }),
   );
   watch(
     paths.images,
     series(imagesPreview, (done) => {
       browserSync.reload();
       done();
-    })
+    }),
   );
   watch(
     paths.fonts,
     series(fontsPreview, (done) => {
       browserSync.reload();
       done();
-    })
+    }),
   );
 }
 
@@ -59,8 +65,10 @@ export const build = series(
     compileSassDist,
     compileTsDist,
     imagesDist,
-    fontsDist
-  )
+    fontsDist,
+    copyFontAwesomeWebfontsDist,
+    copyFontAwesomeCssDist,
+  ),
 );
 export const preview = series(
   cleanPreview,
@@ -69,7 +77,9 @@ export const preview = series(
     compileSassPreview,
     compileTsPreview,
     imagesPreview,
-    fontsPreview
+    fontsPreview,
+    copyFontAwesomeWebfontsPreview,
+    copyFontAwesomeCssPreview,
   ),
-  serve
+  serve,
 );
